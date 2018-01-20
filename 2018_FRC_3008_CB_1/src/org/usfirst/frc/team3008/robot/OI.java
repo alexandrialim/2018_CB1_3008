@@ -14,7 +14,7 @@ import org.usfirst.frc.team3008.robot.commands.ExampleCommand;
  */
 public class OI {
 
-	  Joystick joy1 = new Joystick(0);
+	  static Joystick joy1 = new Joystick(0);
 /*	double xL = 0;
 	double xR = 0;
 	
@@ -55,11 +55,11 @@ public class OI {
     	return (d / Math.abs(d)) * ((Math.abs(d) - 0.15) /(1 - 0.15));
     }
     */
-    public double getLeftStickX() {
-        return (joy1.getRawAxis(0));
+    public static double getLeftStickX() {
+        return (joy1.getRawAxis(1));
     }
     
-    public double getRightStickX() {
+    public static double getRightStickX() {
         return (joy1.getRawAxis(5));
     }
     
