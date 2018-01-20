@@ -3,6 +3,7 @@ package org.usfirst.frc.team3008.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 //AKA JoyStick 
 
@@ -15,6 +16,7 @@ import org.usfirst.frc.team3008.robot.commands.ExampleCommand;
 public class OI {
 
 	  static Joystick joy1 = new Joystick(0);
+	  Button Claw = new JoystickButton(joy1, 1);
 /*	double xL = 0;
 	double xR = 0;
 	
@@ -63,6 +65,12 @@ public class OI {
         return (joy1.getRawAxis(5));
     }
     
+    /*public static double getClaw(){
+    	if(joy1.getRawButton(2)){ //button 2 = button Y.
+    		
+    		
+    	}*/
+    }
    
 
     
@@ -91,7 +99,7 @@ public class OI {
 		//	else FRT.set(0);
     		    	//(look in RobotDrive.class)			
     	//}
-    }
+    //}
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
 	//// joystick.
