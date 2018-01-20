@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.CameraServer;
 import org.usfirst.frc.team3008.robot.commands.DriveControl_Command;
 import org.usfirst.frc.team3008.robot.commands.ExampleCommand;
 import org.usfirst.frc.team3008.robot.subsystems.Drive_Subsystem;
+import org.usfirst.frc.team3008.robot.RobotMap;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -25,13 +26,13 @@ import org.usfirst.frc.team3008.robot.subsystems.Drive_Subsystem;
  * directory.
  */
 public class Robot extends IterativeRobot {
-
-	public static final Drive_Subsystem Drive_Subsystem = new Drive_Subsystem();
+	
 	public static OI oi;
-
+	
+	
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
-	
+	public static final Drive_Subsystem Drive_Subsystem = new Drive_Subsystem();
 	DifferentialDrive train; 
 	// (frontLeft, backLeft, frontRight, backRight)
 	Joystick stick = new Joystick(0);// number = usb port # on driver station
@@ -49,10 +50,10 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		oi = new OI();
-		chooser.addDefault("Default Auto", new DriveControl_Command());
+	/*	chooser.addDefault("Default Auto", new DriveControl_Command());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
-	/*	
+		
 		chooser.addDefault("Default Auto (Center Auto)", CenterAuto);
 		chooser.addObject("Left Auto [Red]", LeftAuto_red );
 		chooser.addObject("Left Auto [Blue]", LeftAuto_blue);
@@ -112,6 +113,7 @@ public class Robot extends IterativeRobot {
 		// schedule the autonomous command (example)
 		if (autonomousCommand != null)
 			autonomousCommand.start();
+		
 	}
 
 	/**
@@ -128,8 +130,10 @@ public class Robot extends IterativeRobot {
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
-		if (autonomousCommand != null)
+		/*if (autonomousCommand != null)
 			autonomousCommand.cancel();
+			*/
+
 	}
 
 	/**
@@ -138,13 +142,8 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		//train.setSafetyEnabled(true); 
-	/*	while (isOperatorControl() && isEnabled()) {
-			Timer.delay(0.005); // wait for a motor update time
-		}*/
-		//if(Robot.Drive_Subsystem.getCurrentCommand() == null){
-		//	Scheduler.getInstance().add(new DriveControl_Command());
-		//}
+		train.setSafetyEnabled(false);
+
 	}
 
 	/**

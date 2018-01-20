@@ -1,5 +1,7 @@
 package org.usfirst.frc.team3008.robot.subsystems;
 
+import org.usfirst.frc.team3008.robot.commands.DriveControl_Command;
+
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -25,7 +27,7 @@ public class Drive_Subsystem extends Subsystem {
 	
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
-		// setDefaultCommand(new MySpecialCommand());
+		setDefaultCommand(new DriveControl_Command());
 	}
 
 }

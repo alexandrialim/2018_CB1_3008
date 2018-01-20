@@ -13,12 +13,8 @@ import org.usfirst.frc.team3008.robot.commands.ExampleCommand;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-	
-	
-	static Joystick joy1 = new Joystick(0);
 
-
-    
+	  Joystick joy1 = new Joystick(0);
 /*	double xL = 0;
 	double xR = 0;
 	
@@ -59,14 +55,15 @@ public class OI {
     	return (d / Math.abs(d)) * ((Math.abs(d) - 0.15) /(1 - 0.15));
     }
     */
-    public static double getLeftStickX() {
-        return (joy1.getRawAxis(RobotMap.L1));
+    public double getLeftStickX() {
+        return (joy1.getRawAxis(0));
     }
     
-    public static double getRightStickX() {
-        return (joy1.getRawAxis(RobotMap.R1));
+    public double getRightStickX() {
+        return (joy1.getRawAxis(5));
     }
     
+   
 
     
     //Run Teleop Code:

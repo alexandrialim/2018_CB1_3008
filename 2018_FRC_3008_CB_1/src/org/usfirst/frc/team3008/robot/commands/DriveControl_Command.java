@@ -7,8 +7,11 @@ import org.usfirst.frc.team3008.robot.Robot;
 
 public class DriveControl_Command extends Command {
 
-	public void DriveControl(){
+	public DriveControl_Command(){
+		
+
 		requires(Robot.Drive_Subsystem);
+		
 	}
 
 	protected void initialize() {
