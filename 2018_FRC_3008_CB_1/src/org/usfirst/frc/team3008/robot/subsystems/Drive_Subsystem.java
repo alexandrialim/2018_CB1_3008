@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3008.robot.subsystems;
 
+import org.usfirst.frc.team3008.robot.RobotMap;
 import org.usfirst.frc.team3008.robot.commands.DriveControl_Command;
 
 import edu.wpi.first.wpilibj.Spark;
@@ -9,10 +10,10 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 public class Drive_Subsystem extends Subsystem {
 	
-	static Spark R1 = new Spark(2);
-	static Spark R2 = new Spark(4);
-	static Spark L1 = new Spark(1);
-	static Spark L2 = new Spark(3);
+	static Spark R1 = new Spark(RobotMap.R1);
+	static Spark R2 = new Spark(RobotMap.R2);
+	static Spark L1 = new Spark(RobotMap.L1);
+	static Spark L2 = new Spark(RobotMap.L2);
 	
 	
 	SpeedControllerGroup left = new SpeedControllerGroup(L1, L2);
