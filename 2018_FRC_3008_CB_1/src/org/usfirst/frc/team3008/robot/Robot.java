@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -16,6 +17,7 @@ import edu.wpi.first.wpilibj.CameraServer;
 import org.usfirst.frc.team3008.robot.commands.DriveControl_Command;
 import org.usfirst.frc.team3008.robot.commands.ExampleCommand;
 import org.usfirst.frc.team3008.robot.subsystems.Drive_Subsystem;
+import org.usfirst.frc.team3008.robot.subsystems.Claw_Subsystem;
 import org.usfirst.frc.team3008.robot.RobotMap;
 
 /**
@@ -33,6 +35,7 @@ public class Robot extends IterativeRobot {
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 	public static final Drive_Subsystem Drive_Subsystem = new Drive_Subsystem();
+	public static final Claw_Subsystem Claw_Subsystem = new Claw_Subsystem();
 	DifferentialDrive train; 
 	// (frontLeft, backLeft, frontRight, backRight)
 	Joystick stick = new Joystick(0);// number = usb port # on driver station

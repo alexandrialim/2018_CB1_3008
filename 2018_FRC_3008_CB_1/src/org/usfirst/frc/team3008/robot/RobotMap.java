@@ -1,5 +1,7 @@
 package org.usfirst.frc.team3008.robot;
 
+import edu.wpi.first.wpilibj.Spark;
+
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
  * to a variable name. This provides flexibility changing wiring, makes checking
@@ -19,17 +21,19 @@ public class RobotMap {
 ///////////////////////////////////////////////////////////////////////////////////////////
 //Front Drive Wheel Port Numbers //
 
-static final int L1 = 0;
-static final int R1 = 1;
+public static final int L1 = 1;
+public static final int R1 = 2;
+
 ////////////////////////////////////////////////////////////////
 //Back Drive Wheel Port Numbers //
 
-static final int L2 = 2;
-static final int R2 = 3;
+public static final int L2 = 3;
+public static final int R2 = 4;
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 //Other Variables // // those are examples....
-static final int extendArm = 4; 
-static final int hand = 5;
+public static final int claw = 5;
+public static final int Arm = 6; 
+public static final int Elevator = 7;
 
 }

@@ -4,10 +4,17 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.command.Command;
+
+import org.usfirst.frc.team3008.robot.RobotMap;
 
 //AKA JoyStick 
 
 import org.usfirst.frc.team3008.robot.commands.ExampleCommand;
+import org.usfirst.frc.team3008.robot.subsystems.Drive_Subsystem;
+import org.usfirst.frc.team3008.robot.subsystems.Claw_Subsystem;
+
+import org.usfirst.frc.team3008.robot.commands.clawControl_Command;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -16,39 +23,14 @@ import org.usfirst.frc.team3008.robot.commands.ExampleCommand;
 public class OI {
 
 	  static Joystick joy1 = new Joystick(0);
-	  Button Claw = new JoystickButton(joy1, 1);
-/*	double xL = 0;
-	double xR = 0;
+	  Button claw = new JoystickButton(joy1, 1); 
+	  
+	 public OI() {
+		 claw.whenPressed(new clawControl_Command());
 	
-	double yL = 0;
-	double yR = 0;
-	
-	double x = xL + xR;
-	double y = yR + yL;
-*/	
-	
-
-	
-	//setting sparks for motors:
-	
-
- //   static Spark h = new Spark(claw); 				// Spark for Claw Motor
-    
-  /*  static TalonSRX FRT = new TalonSRX(frontRightDrive); // Talon SRX for Front Right Motor
-    static TalonSRX BRT = new TalonSRX(backRightDrive); // Talon SRX for Back Right Motor
-    static TalonSRX BLT = new TalonSRX(backLeftDrive); // Talon SRX for Back Left Motor 
-    static TalonSRX FLT = new TalonSRX(frontLeftDrive); // Talon SRX for Front Left Motor
-    static TalonSRX LT = new TalonSRX(lift); //TAlonSRX for lift
-*/  
-    
-  
- /*   // Set all motors to start at 0:
-    double FR2=0;
-    double FL2=0;
-    double BR2=0;
-    double BL2=0;
-    double h2 = 0;
-  */ 
+	 }
+	  
+	  
 	/*
     public static double deadzone(double d){
     	if (Math.abs(d)< 0.15){
@@ -65,14 +47,17 @@ public class OI {
         return (joy1.getRawAxis(5));
     }
     
-    /*public static double getClaw(){
-    	if(joy1.getRawButton(2)){ //button 2 = button Y.
+    public boolean getClaw(){
+    	if(joy1.getRawButtonPressed(2)){ //button 2 = button Y.
+    		return joy1.getRawButton(1);
     		
-    		
-    	}*/
+    	}
+    	else{
+    		return joy1.getRawButton(0);
+    	}
     }
    
-
+}
     
     //Run Teleop Code:
    // public void run(){
