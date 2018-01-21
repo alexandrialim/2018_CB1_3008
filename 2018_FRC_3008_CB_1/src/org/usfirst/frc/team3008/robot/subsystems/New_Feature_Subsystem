@@ -1,0 +1,17 @@
+package org.usfirst.frc.team3008.robot.subsystems;
+
+import org.usfirst.frc.team3008.robot.commands.New_Feature_Command;
+
+import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+
+public class New_Feature_Subsystem extends Subsystem {
+	
+	
+	public void initDefaultCommand() {
+		// Set the default command for a subsystem here.
+	}
+
+}
