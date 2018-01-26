@@ -11,10 +11,11 @@ import org.usfirst.frc.team3008.robot.RobotMap;
 //AKA JoyStick 
 
 import org.usfirst.frc.team3008.robot.commands.ExampleCommand;
+import org.usfirst.frc.team3008.robot.commands.clawControlClose_Command;
 import org.usfirst.frc.team3008.robot.subsystems.Drive_Subsystem;
 import org.usfirst.frc.team3008.robot.subsystems.Claw_Subsystem;
 
-import org.usfirst.frc.team3008.robot.commands.clawControl_Command;
+import org.usfirst.frc.team3008.robot.commands.clawControlOpen_Command;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -23,11 +24,11 @@ import org.usfirst.frc.team3008.robot.commands.clawControl_Command;
 public class OI {
 
 	  static Joystick joy1 = new Joystick(0);
-	  Button claw = new JoystickButton(joy1, 1); 
+	  Button claw = new JoystickButton(joy1, 2); //Button B
 	  
 	 public OI() {
-		 claw.whenPressed(new clawControl_Command());
-	
+		 claw.whenInactive(new clawControlClose_Command());
+		 claw.whenPressed( new clawControlOpen_Command());	
 	 }
 	  
 	  
@@ -45,16 +46,6 @@ public class OI {
     
     public static double getRightStickX() {
         return (joy1.getRawAxis(5));
-    }
-    
-    public boolean getClaw(){
-    	if(joy1.getRawButtonPressed(2)){ //button 2 = button Y.
-    		return joy1.getRawButton(1);
-    		
-    	}
-    	else{
-    		return joy1.getRawButton(0);
-    	}
     }
    
 }

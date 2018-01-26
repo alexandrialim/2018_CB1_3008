@@ -32,8 +32,8 @@ public static final int R2 = 4;
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 //Other Variables // // those are examples....
-public static final int claw = 5;
-public static final int Arm = 6; 
+public static final int claw = 0;
+public static final int Arm = 5; 
 public static final int Elevator = 7;
 
 }
