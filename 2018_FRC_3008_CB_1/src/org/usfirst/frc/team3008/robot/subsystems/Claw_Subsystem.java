@@ -11,6 +11,7 @@ import com.ctre.phoenix.motorcontrol.can.*;
 import org.usfirst.frc.team3008.robot.RobotMap;
 import org.usfirst.frc.team3008.robot.commands.DriveControl_Command;
 import org.usfirst.frc.team3008.robot.commands.clawControlOpen_Command;
+
 public class Claw_Subsystem extends Subsystem{
 	WPI_TalonSRX c1 = new WPI_TalonSRX(RobotMap.claw);
 	
@@ -28,7 +29,10 @@ public class Claw_Subsystem extends Subsystem{
 		c1.set(0);
 		//return true;
 	}
-
+	public void closeClaw(){ 
+		c1.set(-1);
+		//return true;
+	}
 	@Override
 	protected void initDefaultCommand() {
 		setDefaultCommand(null);

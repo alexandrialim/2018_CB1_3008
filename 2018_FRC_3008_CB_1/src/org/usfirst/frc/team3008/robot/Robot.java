@@ -3,7 +3,6 @@ package org.usfirst.frc.team3008.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -16,11 +15,15 @@ import edu.wpi.cscore.AxisCamera;
 import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.CvSource;
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.DriverStation;
 
 import org.usfirst.frc.team3008.robot.commands.DriveControl_Command;
 import org.usfirst.frc.team3008.robot.commands.ExampleCommand;
 import org.usfirst.frc.team3008.robot.subsystems.Drive_Subsystem;
 import org.usfirst.frc.team3008.robot.subsystems.Claw_Subsystem;
+import org.usfirst.frc.team3008.robot.subsystems.TestPort_Subsystem;
+import org.usfirst.frc.team3008.robot.subsystems.Lift_Subsystem;
 import org.opencv.core.Mat;
 import org.opencv.core.Point;
 import org.opencv.core.Scalar;
@@ -37,12 +40,13 @@ import org.usfirst.frc.team3008.robot.RobotMap;
 public class Robot extends IterativeRobot {
 	
 	public static OI oi;
-	
-	
+	DigitalInput liftLim;
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 	public static final Drive_Subsystem Drive_Subsystem = new Drive_Subsystem();
 	public static final Claw_Subsystem Claw_Subsystem = new Claw_Subsystem();
+	public static final TestPort_Subsystem TestPort_Subsystem = new TestPort_Subsystem();
+	public static final Lift_Subsystem Lift_Subsystem = new Lift_Subsystem();
 	DifferentialDrive train; 
 	// (frontLeft, backLeft, frontRight, backRight)
 	Joystick stick = new Joystick(0);// number = usb port # on driver station
@@ -51,7 +55,7 @@ public class Robot extends IterativeRobot {
 	final String LeftAuto_blue = "Left Auto [Blue]";
 	final String RightAuto_red = "Right Auto [Red]";
 	final String RightAuto_blue = "Right Auto [Blue]";
-
+	Camera cam = new Camera();
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -60,6 +64,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		oi = new OI();
+		
 	/*	chooser.addDefault("Default Auto", new DriveControl_Command());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
@@ -72,58 +77,18 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Auto modes", chooser); // move this into commands
 	*/	
 		
-    /*	try{
+   	try{
     	CameraServer.getInstance().startAutomaticCapture();
-    	System.out.println( "Cam0");
+    	AxisCamera cam = CameraServer.getInstance().addAxisCamera("axis-camera.local");
+    	cam.setResolution(12, 80);
+    	System.out.println( "Cam");
     	}catch
     		(Exception e) {
     		System.out.println();
     		}
     
 		
-	}*/
-		/*Thread m_visionThread;
-
-	@Override
-	public void robotInit() {
-		m_visionThread = new Thread(() -> {
-			// Get the Axis camera from CameraServer
-			AxisCamera camera
-					= CameraServer.getInstance().addAxisCamera("axis-camera.local");
-			// Set the resolution
-			camera.setResolution(640, 480);
-
-			// Get a CvSink. This will capture Mats from the camera
-			CvSink cvSink = CameraServer.getInstance().getVideo();
-			// Setup a CvSource. This will send images back to the Dashboard
-			CvSource outputStream
-					= CameraServer.getInstance().putVideo("Rectangle", 640, 480);
-
-			// Mats are very memory expensive. Lets reuse this Mat.
-			Mat mat = new Mat();
-
-			// This cannot be 'true'. The program will never exit if it is. This
-			// lets the robot stop this thread when restarting robot code or
-			// deploying.
-			while (!Thread.interrupted()) {
-				// Tell the CvSink to grab a frame from the camera and put it
-				// in the source mat.  If there is an error notify the output.
-				if (cvSink.grabFrame(mat) == 0) {
-					// Send the output the error.
-					outputStream.notifyError(cvSink.getError());
-					// skip the rest of the current iteration
-					continue;
-				}
-				// Put a rectangle on the image
-				Imgproc.rectangle(mat, new Point(100, 100), new Point(400, 400),
-						new Scalar(255, 255, 255), 5);
-				// Give the output stream a new image to display
-				outputStream.putFrame(mat);
-			}
-		});
-		m_visionThread.setDaemon(true);
-		m_visionThread.start();*/
-	}
+	}    
 	
 
 	/**
@@ -155,6 +120,15 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		autonomousCommand = chooser.getSelected();
+		
+		String gameData;
+		gameData = DriverStation.getInstance().getGameSpecificMessage();
+		if(gameData.charAt(0) == 'L')
+		{
+			//Put left auto code here
+		} else {
+			//Put right auto code here
+		}
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -162,10 +136,12 @@ public class Robot extends IterativeRobot {
 		 * = new MyAutoCommand(); break; case "Default Auto": default:
 		 * autonomousCommand = new ExampleCommand(); break; }
 		 */
+		
 
 		// schedule the autonomous command (example)
-		if (autonomousCommand != null)
+	/*	if (autonomousCommand != null)
 			autonomousCommand.start();
+		*/
 		
 	}
 

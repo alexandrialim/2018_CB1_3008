@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3008.robot;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Spark;
 
 /**
@@ -35,5 +36,11 @@ public static final int R2 = 4;
 public static final int claw = 0;
 public static final int Arm = 5; 
 public static final int Elevator = 7;
+
+///////////////////////////////////////////////////
+public static final int liftLim = 0;
+public static final int dioR = 9;
+public static final int dioG = 7;
+public static final int dioY = 8;
 
 }

@@ -11,11 +11,20 @@ import org.usfirst.frc.team3008.robot.RobotMap;
 //AKA JoyStick 
 
 import org.usfirst.frc.team3008.robot.commands.ExampleCommand;
+import org.usfirst.frc.team3008.robot.commands.LiftLimitReverse_Command;
+import org.usfirst.frc.team3008.robot.commands.LiftLimitUp_Command;
+import org.usfirst.frc.team3008.robot.commands.LiftLimitStop_Command;
+import org.usfirst.frc.team3008.robot.commands.LiftLimit_Command;
+import org.usfirst.frc.team3008.robot.commands.TestPortsBackwards_Command;
 import org.usfirst.frc.team3008.robot.commands.clawControlClose_Command;
+import org.usfirst.frc.team3008.robot.commands.clawControlStop_Command;
 import org.usfirst.frc.team3008.robot.subsystems.Drive_Subsystem;
 import org.usfirst.frc.team3008.robot.subsystems.Claw_Subsystem;
 
 import org.usfirst.frc.team3008.robot.commands.clawControlOpen_Command;
+import org.usfirst.frc.team3008.robot.commands.TestPortsForward_Commands;
+import org.usfirst.frc.team3008.robot.commands.TestPortsStop_Command;
+
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -24,11 +33,21 @@ import org.usfirst.frc.team3008.robot.commands.clawControlOpen_Command;
 public class OI {
 
 	  static Joystick joy1 = new Joystick(0);
-	  Button claw = new JoystickButton(joy1, 2); //Button B
+	  Button clawOpen = new JoystickButton(joy1, 2); //Button B
+	  Button clawClose = new JoystickButton(joy1, 1); //Button A
+	  Button TestOpen = new JoystickButton(joy1, 3); //Button X
+	  Button TestClose = new JoystickButton(joy1, 4); //Button Y
 	  
 	 public OI() {
-		 claw.whenInactive(new clawControlClose_Command());
-		 claw.whenPressed( new clawControlOpen_Command());	
+		 clawOpen.whenInactive(new clawControlStop_Command());
+		 clawOpen.whenPressed( new clawControlOpen_Command());	
+		 clawClose.whenInactive(new clawControlStop_Command());
+		 clawClose.whenPressed( new clawControlClose_Command());
+		 
+		 TestOpen.whenInactive(new LiftLimitStop_Command());
+		 TestOpen.whenPressed( new LiftLimitUp_Command());	
+		 TestClose.whenInactive(new LiftLimitStop_Command());
+		 TestClose.whenPressed( new LiftLimitReverse_Command());
 	 }
 	  
 	  
